@@ -37,7 +37,7 @@ while [[ "${1:-}" != "" ]]; do
 done
 
 need_root
-run "touch $LOG_FILE"
+run "mkdir -p /var/log && touch $LOG_FILE"
 
 # --- Package maps ---
 PKG_INTEL_UCODE="intel-ucode"
@@ -109,8 +109,8 @@ fi
 
 if [[ "$GEN_MODE" == "prime" ]]; then
   CONF="/etc/X11/xorg.conf.d/20-prime.conf"
-  INTEL_BUSID=$(lspci | grep -i 'vga.*intel' | awk '{print $1}' | sed 's/:/ /g' | awk '{printf "PCI:%d:%d:%d\n","0x"$1,"0x"$2,"0x"$3}')
-  NVIDIA_BUSID=$(lspci | grep -i 'vga.*nvidia' | awk '{print $1}' | sed 's/:/ /g' | awk '{printf "PCI:%d:%d:%d\n","0x"$1,"0x"$2,"0x"$3}')
+  INTEL_BUSID=$(lspci | grep -i 'vga.*intel' | awk '{print $1}' | awk -F: '{printf "PCI:%d:%d:%d\n", strtonum("0x"$1), strtonum("0x"$2), strtonum("0x"$3)}')
+  NVIDIA_BUSID=$(lspci | grep -i 'vga.*nvidia' | awk '{print $1}' | awk -F: '{printf "PCI:%d:%d:%d\n", strtonum("0x"$1), strtonum("0x"$2), strtonum("0x"$3)}')
   cat > "$CONF" <<CONF
 Section "ServerLayout"
     Identifier "layout"
