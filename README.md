@@ -2,9 +2,13 @@
 
 ![Void Linux Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/Void_Linux_logo.svg)
 
-Minimalistic, independent Linux distribution based on `xbps` package manager.  
-Fast, rolling release, systemd‑free.
+Независимый минималистичный дистрибутив Linux с собственным пакетным менеджером **xbps**.  
+Rolling‑release, быстрый и без systemd.
 
 ## Репозиторий
 
-Здесь собираются скрипты и утилиты для настройки Void Linux.
+Здесь собраны скрипты и утилиты для настройки и автоматизации в Void Linux.
+
+## Документация
+
+[Официальный сайт](https://voidlinux.org/)
