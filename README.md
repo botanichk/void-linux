@@ -1,6 +1,6 @@
 # Void Linux
 
-![Void Linux Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/Void_Linux_logo.svg)
+![Void Linux Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Void_Linux_logo.svg/320px-Void_Linux_logo.svg.png)
 
 Независимый минималистичный дистрибутив Linux с собственным пакетным менеджером **xbps**.  
 Rolling‑release, быстрый и без systemd.
