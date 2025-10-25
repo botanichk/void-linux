@@ -43,7 +43,7 @@ run "mkdir -p /var/log && touch $LOG_FILE"
 PKG_INTEL_UCODE="intel-ucode"
 PKG_AMD_UCODE="amd-ucode"
 PKG_FIRMWARE=("linux-firmware")
-PKG_XORG=("xorg-server" "xorg-xinit")
+PKG_XORG=("xorg-server" "xinit")  # ← ИСПРАВЛЕНО: xorg-xinit → xinit
 PKG_NVIDIA=("nvidia" "nvidia-libs" "nvidia-dkms")
 
 # Detect CPU vendor
