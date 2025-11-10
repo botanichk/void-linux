@@ -23,11 +23,13 @@ case "$CPU_VENDOR" in
 esac
 log "CPU: $CPU_VENDOR → $CPU_UCODE"
 
-# --- Kernel headers ---
-KERNEL_VER="$(uname -r)"
-KERNEL_FLAVOR="${KERNEL_VER#*-}"
-PKG_HEADERS="linux${KERNEL_FLAVOR:+-$KERNEL_FLAVOR}-headers"
-xbps-query -Rs "^$PKG_HEADERS$" >/dev/null || PKG_HEADERS="linux-headers"
+# --- Kernel headers (Void uses generic names) ---
+KERNEL_PKG="$(xbps-query -l | awk '{print $2}' | grep -E '^linux(-lts|-rt)?-[0-9]' | head -n1)"
+case "$KERNEL_PKG" in
+  *linux-lts*) PKG_HEADERS="linux-lts-headers" ;;
+  *linux-rt*)  PKG_HEADERS="linux-rt-headers" ;;
+  *)           PKG_HEADERS="linux-headers" ;;
+esac
 log "Kernel headers: $PKG_HEADERS"
 
 # --- GPU detection ---
@@ -53,7 +55,7 @@ fi
 
 # --- Install ---
 log "Установка: ${PKGS[*]}"
-xbps-install -Sy ${PKGS[*]}
+xbps-install -Sy "${PKGS[@]}"
 
 # --- Reconfigure ---
 log "Пересборка initramfs..."
